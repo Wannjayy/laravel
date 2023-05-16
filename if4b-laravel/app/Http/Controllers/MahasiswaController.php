@@ -88,7 +88,8 @@ class MahasiswaController extends Controller
      */
     public function destroy(Request $request)
     {
-        $ids = $request->input('mahasiswa'); // Mendapatkan array ID data yang ingin dihapus
+        $ids = $request->input('mahasiswa') ?? []; // Mendapatkan array ID data yang ingin dihapus
+        dd($ids);
 
         $mahasiswas = Mahasiswa::whereIn('id', $ids)->get();
         foreach ($mahasiswas as $mahasiswa) {

@@ -15,9 +15,7 @@
 
         <div style="display: flex; flex-direction: column; align-items: center;">
           <h5 class="mt-4">Data Mahasiswa</h5>
-          <div style="display: flex; justify-content: center;">
-            {{$datamahasiswas->links()}}
-          </div>
+          {{$datamahasiswas->links()}}
         </div>        
           <div class="table-responsive">
             <table class="table table-striped table-bordered">
