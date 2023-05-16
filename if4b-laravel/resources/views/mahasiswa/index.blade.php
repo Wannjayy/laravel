@@ -13,10 +13,15 @@
         <h4 class="card-title">Data Mahasiswa</h4>
         <a href="{{route('mahasiswa.create')}}" class="btn btn-primary">Tambah</a>
 
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <h5 class="mt-4">Data Mahasiswa</h5>
-          {{$datamahasiswas->links()}}
-        </div>        
+          <h5 class="mt-4">Data Mahasiswa</h5> 
+          <div class="my-3 col-12 col-sm-8 col-md-6">
+            <form action="" method="GET">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" placeholder="Cari">
+                <button class="input-group-text btn btn-primary">Search</button>
+              </div>
+            </form>
+          </div>
           <div class="table-responsive">
             <table class="table table-striped table-bordered">
               <thead>
@@ -68,11 +73,12 @@
                       <td>{{$item->kota_lahir}}</td>
                       <td>{{$item->prodi->nama_prodi}}</td>
                       <td>{{$item->created_at}}</td>
-                      <td><input type="checkbox" name="mahasiswa[]" value="{{$item->id}}"></td>
+                      <td><input type="checkbox" name="ids[]" value="{{$item->id}}"></td>
                     </tr>
                 @endforeach
               </tbody>
             </table>
+            <div class="mt-4" style="display: flex; justify-content:center;">{{$datamahasiswas->links()}}</div>
           </div>
       </div>
     </div>

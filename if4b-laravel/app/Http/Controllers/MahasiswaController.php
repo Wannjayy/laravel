@@ -12,8 +12,10 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $search = $request->search;
+        // dd($search);
         $dataprodis = Prodi::all();
         $datamahasiswas = Mahasiswa::with('prodi')->orderBy('created_at', 'DESC')->paginate(5);
 
@@ -88,7 +90,7 @@ class MahasiswaController extends Controller
      */
     public function destroy(Request $request)
     {
-        $ids = $request->input('mahasiswa') ?? []; // Mendapatkan array ID data yang ingin dihapus
+        $ids = $request->input('ids'); // Mendapatkan array ID data yang ingin dihapus
         dd($ids);
 
         $mahasiswas = Mahasiswa::whereIn('id', $ids)->get();

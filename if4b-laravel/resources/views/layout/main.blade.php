@@ -4,7 +4,7 @@
 <head>
   <script>
     function getSelectedCheckboxValues() {
-      var checkboxes = document.querySelectorAll('input[name="mahasiswa[]"]:checked');
+      var checkboxes = document.querySelectorAll('input[name="ids[]"]:checked');
       var values = [];
       checkboxes.forEach(function(checkbox) {
         values.push(checkbox.value);
