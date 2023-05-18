@@ -17,7 +17,7 @@
           <div class="my-3 col-12 col-sm-8 col-md-6">
             <form action="" method="GET">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" name="search" placeholder="Cari">
+                <input type="text" class="form-control" name="search" placeholder="Cari Mahasiswa (NPM, Nama, Kota Lahir, Program Studi)">
                 <button class="input-group-text btn btn-primary">Search</button>
               </div>
             </form>
@@ -34,12 +34,9 @@
                   <th>Program Studi</th>
                   <th>Created At</th>
                   <th>
-                    @foreach ($datamahasiswas as $item)
-                    <form id="delete-form" action="{{ route('mahasiswa.destroy', $item->id) }}" method="POST">
+                    <form id="delete-form" action="{{ route('mahasiswa.destroy', ':id') }}" method="POST">
                       @csrf
                       @method('DELETE')
-                    </form>
-                    @endforeach
                     <button type="submit" class="btn btn-danger" onclick="
                       event.preventDefault();
                       Swal.fire({
@@ -59,6 +56,7 @@
                         }
                       });
                     ">Hapus</button>
+                    </form>
                   </th>
                 </tr>
               </thead>
@@ -78,7 +76,7 @@
                 @endforeach
               </tbody>
             </table>
-            <div class="mt-4" style="display: flex; justify-content:center;">{{$datamahasiswas->links()}}</div>
+            <div class="mt-4" style="display: flex; justify-content:center;">{{$datamahasiswas->withQueryString()->links()}}</div>
           </div>
       </div>
     </div>

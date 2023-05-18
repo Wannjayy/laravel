@@ -14,10 +14,17 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        // $search = $request->search;
-        // dd($search);
+        $search = $request->search;
         $dataprodis = Prodi::all();
-        $datamahasiswas = Mahasiswa::with('prodi')->orderBy('created_at', 'DESC')->paginate(5);
+        $datamahasiswas = Mahasiswa::with('prodi')
+        ->where('nama_mahasiswa','LIKE','%'.$search.'%')
+            ->orWhere('npm','LIKE','%'.$search.'%')
+            ->orWhere('kota_lahir','LIKE','%'.$search.'%')
+            ->orWhereHas('prodi', function($query) use($search) {
+                $query->where('nama_prodi','LIKE','%'.$search.'%');
+            })
+        ->orderBy('created_at', 'DESC')
+        ->paginate(5);
 
         return view('mahasiswa.index', compact('datamahasiswas', 'dataprodis'));
     }

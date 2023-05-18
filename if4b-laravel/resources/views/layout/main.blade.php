@@ -15,7 +15,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Spica Admin</title>
+  <title>Universitas</title>
   <!-- base:css -->
   <link rel="stylesheet" href="{{asset('vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
@@ -179,7 +179,24 @@
             <a class="navbar-brand brand-logo" href="{{asset('index.html')}}"><img src="{{asset('images/logo.svg')}}" alt="logo"/></a>
             <a class="navbar-brand brand-logo-mini" href="{{asset('index.html')}}"><img src="{{asset('images/logo-mini.svg')}}" alt="logo"/></a>
           </div>
-          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, Wannjay</h4>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">
+            Selamat
+            @php
+            date_default_timezone_set('Asia/Jakarta');
+            $currentHour = date('H');
+            $greeting = '';
+            if ($currentHour >= 5 && $currentHour < 12) {
+              $greeting = 'Pagi';
+            } elseif ($currentHour >= 12 && $currentHour < 18) {
+              $greeting = 'Siang';
+            } else {
+              $greeting = 'Malam';
+            }
+            echo $greeting;
+            @endphp,
+            {{Auth::user()->name}}
+            ({{Auth::user()->peran->nama}})
+          </h4>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
               <h4 id="waktu" class="mb-0 font-weight-bold d-none d-xl-block"></h4>
@@ -319,14 +336,14 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="{{asset('images/faces/face5.jpg')}}" alt="profile"/>
-                <span class="nav-profile-name">Wannjay</span>
+                <span class="nav-profile-name">{{Auth::user()->name}}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item">
                   <i class="mdi mdi-settings text-primary"></i>
                   Settings
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="/logout">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>
