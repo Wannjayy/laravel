@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // FakultasSeeder::class,
             // ProdiSeeder::class
+            PeranSeeder::class
         ]);
     }
 }
