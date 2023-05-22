@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use Illuminate\Http\Request;
 use App\Models\Prodi;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class MahasiswaController extends Controller
@@ -17,14 +17,14 @@ class MahasiswaController extends Controller
         $search = $request->search;
         $dataprodis = Prodi::all();
         $datamahasiswas = Mahasiswa::with('prodi')
-        ->where('nama_mahasiswa','LIKE','%'.$search.'%')
-            ->orWhere('npm','LIKE','%'.$search.'%')
-            ->orWhere('kota_lahir','LIKE','%'.$search.'%')
-            ->orWhereHas('prodi', function($query) use($search) {
-                $query->where('nama_prodi','LIKE','%'.$search.'%');
+            ->where('nama_mahasiswa', 'LIKE', '%' . $search . '%')
+            ->orWhere('npm', 'LIKE', '%' . $search . '%')
+            ->orWhere('kota_lahir', 'LIKE', '%' . $search . '%')
+            ->orWhereHas('prodi', function ($query) use ($search) {
+                $query->where('nama_prodi', 'LIKE', '%' . $search . '%');
             })
-        ->orderBy('created_at', 'DESC')
-        ->paginate(5);
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
 
         return view('mahasiswa.index', compact('datamahasiswas', 'dataprodis'));
     }

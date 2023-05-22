@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function login() 
+    public function login()
     {
         return view('login');
     }
 
-    public function authenticate(Request $request) 
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -30,7 +30,7 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function logout(Request $request) 
+    public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();

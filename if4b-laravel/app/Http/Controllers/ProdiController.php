@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
-use App\Models\Fakultas;
 use Illuminate\Support\Str;
-
-
 
 class ProdiController extends Controller
 {
@@ -81,6 +79,6 @@ class ProdiController extends Controller
         $prodi->delete();
 
         return redirect()->route('prodi.index')
-        ->with('success', 'Program Studi berhasil dihapus.');
+            ->with('success', 'Program Studi berhasil dihapus.');
     }
 }
